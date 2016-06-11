@@ -107,7 +107,7 @@ class AccelFieldSensorEventListener implements SensorEventListener {
     LineGraphView raw;
     float[] input = new float[3];
     float[] output = new float[3];
-    static final float alpha = 0.1f;
+    static final float alpha = 0.25f;
 
     public AccelFieldSensorEventListener(TextView x, TextView y, TextView z, TextView xMax, TextView yMax, TextView zMax, LineGraphView g, LineGraphView r) {
         outputX = x;
