@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Pair;
 import android.view.View;
@@ -24,16 +25,18 @@ public class LineGraphView extends View
 
     private List<Paint> linePaints = new ArrayList<Paint>();
 
-    public final int[] defalutColors ={0xffff0000,
-            0xff00bb00,
-            0xff0000ff,
-            0xff000000,
-            0xffffff00,
-            0xffff00ff,
-            0xff00ffff,
+    public final int[] defalutColors ={0xfffd6e3c,
+            0xff2be81c,//
+            0xff3cd2fd,//
+            0xff000000,//
+            0xffffff00,//
+            0xffff00ff,//0xffff00ff
+            0xff00ffff,//0xff00ffff
     };
 
     private Paint graphPaint = new Paint();
+
+
 
     private final int WIDTH = 600;
     private final int HEIGHT = 400;
@@ -52,7 +55,8 @@ public class LineGraphView extends View
      */
     public LineGraphView(Context context, int dataWidth, List<String> labels) {
         super(context);
-        setBackgroundColor(0xffeeeeee);
+        setBackgroundColor(0xff000000);
+        graphPaint.setColor(Color.WHITE);
 
         for(int i =0; i < labels.size(); i++)
             linePaints.add(new Paint());

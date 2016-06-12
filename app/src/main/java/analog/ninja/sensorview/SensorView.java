@@ -8,20 +8,31 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 import java.lang.Math;
 import java.util.Arrays;
 
 
 public class SensorView extends AppCompatActivity {
-    public LineGraphView graph;
-    public LineGraphView raw;
+    private LineGraphView graph;
+    private LineGraphView raw;
+    private SeekBar seekBar;
+    private TextView textView;
+    private TextView alphaView;
+    private Filter lowPass = new Filter(0.9f);
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_view);
         LinearLayout l =  (LinearLayout) findViewById(R.id.graphLayout);
+        initializeVariables();
 
         //Filtered Graph Data
         graph = new LineGraphView(this, 100, Arrays.asList("x", "y", "z"));
@@ -72,13 +83,10 @@ public class SensorView extends AppCompatActivity {
         tvRotationYMax.setText("0");
         tvRotationZMax.setText("0");
 
-
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
-
-        // Sensor delay changed to SENSOR_DELAY_FASTEST
         Sensor accelSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-        SensorEventListener selAccel = new AccelFieldSensorEventListener(tvAccelX, tvAccelY, tvAccelZ, tvAccelXMax, tvAccelYMax, tvAccelZMax, graph, raw);
+        SensorEventListener selAccel = new AccelFieldSensorEventListener(tvAccelX, tvAccelY, tvAccelZ, tvAccelXMax, tvAccelYMax, tvAccelZMax, graph, raw, lowPass);
         sensorManager.registerListener(selAccel, accelSensor, SensorManager.SENSOR_DELAY_FASTEST);
 
         Sensor magneticSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -93,6 +101,44 @@ public class SensorView extends AppCompatActivity {
         SensorEventListener selRotation = new RotationFieldSensorEventListener(tvRotationX, tvRotationY, tvRotationZ, tvRotationXMax, tvRotationYMax, tvRotationZMax);
         sensorManager.registerListener(selRotation, rotationSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
+
+
+        textView.setText("Covered: " + seekBar.getProgress() + "/" + seekBar.getMax());
+
+        seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+            int progress = 0;
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
+                progress = progresValue;
+                textView.setText("Covered: " + progress + "/" + seekBar.getMax());
+                lowPass.tune(0.01f-progress/100000f);
+                alphaView.setText(String.valueOf(0.01f-progress/100000f));
+
+                Toast.makeText(getApplicationContext(), "Changing seekbar's progress", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+                Toast.makeText(getApplicationContext(), "Started tracking seekbar", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+                textView.setText("Covered: " + progress + "/" + seekBar.getMax());
+                Toast.makeText(getApplicationContext(), "Stopped tracking seekbar", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+
+    private void initializeVariables() {
+        seekBar = (SeekBar) findViewById(R.id.seekBar1);
+        textView = (TextView) findViewById(R.id.textView1);
+        alphaView = (TextView) findViewById(R.id.alpha);
     }
 }
 
@@ -107,9 +153,9 @@ class AccelFieldSensorEventListener implements SensorEventListener {
     LineGraphView raw;
     float[] input = new float[3];
     float[] output = new float[3];
-    static final float alpha = 0.25f;
+    Filter filter;
 
-    public AccelFieldSensorEventListener(TextView x, TextView y, TextView z, TextView xMax, TextView yMax, TextView zMax, LineGraphView g, LineGraphView r) {
+    public AccelFieldSensorEventListener(TextView x, TextView y, TextView z, TextView xMax, TextView yMax, TextView zMax, LineGraphView g, LineGraphView r, Filter f) {
         outputX = x;
         outputY = y;
         outputZ = z;
@@ -118,6 +164,7 @@ class AccelFieldSensorEventListener implements SensorEventListener {
         outputZMax = zMax;
         graph = g;  //Filtered Graph Data
         raw = r;    //Raw Sensor Graph Data
+        filter = f;
     }
 
     public void onAccuracyChanged(Sensor s, int i) {
@@ -138,8 +185,10 @@ class AccelFieldSensorEventListener implements SensorEventListener {
             outputZMax.setText(String.format("%.2f", Math.abs(se.values[2])));
 
         // Modify constant alpha in constructor for filter sensitivity
-        output = lowPassFilter(se.values, output, alpha );
 
+
+        //output = lowPassFilter(se.values, output, filter );
+        output = filter.lowPassFilter(se.values, output);
         //Sensor data processing complete
         //Insert measurement updates and method calls
         //Raw data available via se.values[], filtered data via output[]
@@ -163,6 +212,31 @@ class AccelFieldSensorEventListener implements SensorEventListener {
         return output;
     }
 }
+
+
+class Filter{
+    float alpha;
+    float[] input = new float[3];
+    float[] output = new float[3];
+
+    public Filter(float α){
+        alpha = α;
+    }
+    public float[] lowPassFilter(float[] in, float[] out){
+        //Initialize output
+        if (output == null)
+            return input;
+
+        for(int i=0; i<in.length; i++)
+            out[i] = out[i] + alpha * (in[i]-out[i]);
+
+        return output;
+    }
+    public void tune(float a){
+        alpha = a;
+    }
+
+        }
 
 class RotationFieldSensorEventListener implements SensorEventListener {
     TextView outputX;

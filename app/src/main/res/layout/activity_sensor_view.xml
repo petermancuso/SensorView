@@ -12,7 +12,8 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="SensorView.analog.ninja.SensorView">
+        tools:context="SensorView.analog.ninja.SensorView"
+        android:background="#000000">
 
         <GridLayout
             android:layout_width="wrap_content"
@@ -28,7 +29,8 @@
                 android:id="@+id/textView"
                 android:layout_row="1"
                 android:layout_column="0"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -36,7 +38,8 @@
                 android:text="x value"
                 android:id="@+id/accelX"
                 android:layout_row="1"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -45,7 +48,8 @@
                 android:id="@+id/tvAccelXMax"
                 android:layout_row="1"
                 android:layout_column="2"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -54,7 +58,8 @@
                 android:id="@+id/textView3"
                 android:layout_row="2"
                 android:layout_column="0"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -62,7 +67,8 @@
                 android:text="y value"
                 android:id="@+id/accelY"
                 android:layout_row="2"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,7 +77,8 @@
                 android:id="@+id/tvAccelYMax"
                 android:layout_row="2"
                 android:layout_column="2"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -80,7 +87,21 @@
                 android:id="@+id/textView5"
                 android:layout_row="3"
                 android:layout_column="0"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
+
+            <SeekBar
+                android:id="@+id/seekBar1"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="26dp"
+                android:max="1000"
+                android:layout_row="4"
+                android:layout_column="0"
+                android:layout_columnSpan="4"
+                android:textColor="#ffffff"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -88,7 +109,8 @@
                 android:text="z value"
                 android:id="@+id/accelZ"
                 android:layout_row="3"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,52 +119,47 @@
                 android:id="@+id/tvAccelZMax"
                 android:layout_row="3"
                 android:layout_column="2"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView19"
-                android:layout_row="4"
+                android:layout_row="7"
                 android:layout_column="1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView20"
-                android:layout_row="4"
+                android:layout_row="7"
                 android:layout_column="2" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" ( μT )"
-                android:id="@+id/textView12"
-                android:layout_row="6"
-                android:layout_column="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Magnetic"
                 android:id="@+id/magneticLabel"
-                android:layout_row="6"
-                android:layout_column="0" />
+                android:layout_row="9"
+                android:layout_column="0"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="z value"
                 android:id="@+id/tvRotationZ"
-                android:layout_row="14"
-                android:layout_column="1" />
+                android:layout_row="17"
+                android:layout_column="1"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView17"
-                android:layout_row="15"
+                android:layout_row="18"
                 android:layout_column="0" />
 
             <TextView
@@ -150,48 +167,53 @@
                 android:layout_height="wrap_content"
                 android:text="Light ( lx )"
                 android:id="@+id/lightLabel"
-                android:layout_row="16"
-                android:layout_column="0" />
+                android:layout_row="19"
+                android:layout_column="0"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="value"
                 android:id="@+id/tvlight"
-                android:layout_row="16"
-                android:layout_column="1" />
+                android:layout_row="19"
+                android:layout_column="1"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="y value"
                 android:id="@+id/tvMagneticY"
-                android:layout_row="8"
-                android:layout_column="1" />
+                android:layout_row="11"
+                android:layout_column="1"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="y max"
                 android:id="@+id/tvMagneticYMAX"
-                android:layout_row="8"
+                android:layout_row="11"
                 android:layout_column="2"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="z    "
                 android:id="@+id/textView6"
-                android:layout_row="9"
+                android:layout_row="12"
                 android:layout_column="0"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView15"
-                android:layout_row="10"
+                android:layout_row="13"
                 android:layout_column="0" />
 
             <TextView
@@ -199,35 +221,48 @@
                 android:layout_height="wrap_content"
                 android:text="z value"
                 android:id="@+id/tvMagneticZ"
-                android:layout_row="9"
-                android:layout_column="1" />
+                android:layout_row="12"
+                android:layout_column="1"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="z max"
                 android:id="@+id/tvMagneticZMAX"
-                android:layout_row="9"
+                android:layout_row="12"
                 android:layout_column="2"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" ( μT )"
+                android:id="@+id/textView12"
+                android:layout_row="9"
+                android:layout_column="1"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Max"
                 android:id="@+id/textView14"
-                android:layout_row="6"
+                android:layout_row="9"
                 android:layout_column="2"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="x    "
                 android:id="@+id/textView2"
-                android:layout_row="7"
+                android:layout_row="10"
                 android:layout_column="0"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -235,7 +270,8 @@
                 android:text="Accelerometer "
                 android:id="@+id/textView7"
                 android:layout_row="0"
-                android:layout_column="0" />
+                android:layout_column="0"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -244,7 +280,8 @@
                 android:id="@+id/accelUnits"
                 android:layout_row="0"
                 android:layout_column="1"
-                android:layout_gravity="left" />
+                android:layout_gravity="left"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -253,7 +290,8 @@
                 android:id="@+id/textView24"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -266,127 +304,154 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView21"
-                android:layout_row="5"
+                android:layout_row="8"
                 android:layout_column="0" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="6"
-                android:layout_column="1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="x value"
                 android:id="@+id/tvMagneticX"
-                android:layout_row="7"
-                android:layout_column="1" />
+                android:layout_row="10"
+                android:layout_column="1"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="x max"
                 android:id="@+id/tvMagneticXMAX"
-                android:layout_row="7"
+                android:layout_row="10"
                 android:layout_column="2"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="y    "
                 android:id="@+id/textView4"
-                android:layout_row="8"
+                android:layout_row="11"
                 android:layout_column="0"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="x max"
                 android:id="@+id/tvRotationXMax"
-                android:layout_row="12"
+                android:layout_row="15"
                 android:layout_column="2"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="y    "
                 android:id="@+id/textView10"
-                android:layout_row="13"
+                android:layout_row="16"
                 android:layout_column="0"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="y value"
                 android:id="@+id/tvRotationY"
-                android:layout_row="13"
-                android:layout_column="1" />
+                android:layout_row="16"
+                android:layout_column="1"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rotaton"
                 android:id="@+id/textView8"
-                android:layout_row="11"
-                android:layout_column="0" />
+                android:layout_row="14"
+                android:layout_column="0"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Max"
                 android:id="@+id/textView25"
-                android:layout_row="11"
+                android:layout_row="14"
                 android:layout_column="2"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="x    "
                 android:id="@+id/textView9"
-                android:layout_row="12"
+                android:layout_row="15"
                 android:layout_column="0"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="x value"
                 android:id="@+id/tvRotationX"
-                android:layout_row="12"
-                android:layout_column="1" />
+                android:layout_row="15"
+                android:layout_column="1"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="y max"
                 android:id="@+id/tvRotationYMax"
-                android:layout_row="13"
+                android:layout_row="16"
                 android:layout_column="2"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="z    "
                 android:id="@+id/textView11"
-                android:layout_row="14"
+                android:layout_row="17"
                 android:layout_column="0"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
 
 
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="29dp"
+                android:layout_marginTop="14dp"
+                android:layout_row="5"
+                android:layout_column="0"
+                android:layout_columnSpan="4"
+                android:textColor="#ffffff"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alpha"
+                android:id="@+id/alpha"
+                android:layout_row="6"
+                android:layout_column="0"
+                android:layout_columnSpan="4"
+                android:textColor="#ffffff" />
 
             <LinearLayout
                 android:id="@+id/graphLayout"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_row="4"
+                android:layout_row="7"
                 android:layout_column="0"
                 android:layout_columnSpan="3">
 
@@ -397,9 +462,12 @@
                 android:layout_height="wrap_content"
                 android:text="z max"
                 android:id="@+id/tvRotationZMax"
-                android:layout_row="14"
+                android:layout_row="17"
                 android:layout_column="2"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:textColor="#ffffff" />
+
+
 
         </GridLayout>
     </RelativeLayout>
