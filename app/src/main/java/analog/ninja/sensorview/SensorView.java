@@ -22,10 +22,7 @@ public class SensorView extends AppCompatActivity {
     private SeekBar seekBar;
     private TextView textView;
     private TextView alphaView;
-    private Filter lowPass = new Filter(0.9f);
-
-
-
+    private Filter lowPass = new Filter(1f);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,8 +99,7 @@ public class SensorView extends AppCompatActivity {
         sensorManager.registerListener(selRotation, rotationSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
 
-
-        textView.setText("Covered: " + seekBar.getProgress() + "/" + seekBar.getMax());
+        textView.setText("Scale Factor: " + seekBar.getProgress() + "/" + seekBar.getMax());
 
         seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             int progress = 0;
@@ -111,32 +107,41 @@ public class SensorView extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
                 progress = progresValue;
-                textView.setText("Covered: " + progress + "/" + seekBar.getMax());
-                lowPass.tune(0.01f-progress/100000f);
-                alphaView.setText(String.valueOf(0.01f-progress/100000f));
+                textView.setText("Applied: " + progress + "/" + seekBar.getMax());
+                lowPass.tune(0.01f - progress / 100000f);
 
-                Toast.makeText(getApplicationContext(), "Changing seekbar's progress", Toast.LENGTH_SHORT).show();
+                alphaView.setText("Attenuation: "+ (String.format("%.5f",0.01f-progress/100000f)));
+
+                if (progress == 0){
+                    lowPass.tune(1f);
+                    alphaView.setText("Attenuation: 0.00000");
+            }
+                if(progress==1000) {
+                    lowPass.tune(0.00001f);
+                    alphaView.setText("Attenuation: 0.00001");
+
+                }//Toast.makeText(getApplicationContext(), "Changing lowpass filter Attenuation", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
-                Toast.makeText(getApplicationContext(), "Started tracking seekbar", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Started Lowpass Filter Attenuation", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
-                textView.setText("Covered: " + progress + "/" + seekBar.getMax());
-                Toast.makeText(getApplicationContext(), "Stopped tracking seekbar", Toast.LENGTH_SHORT).show();
+                textView.setText("Scale: " + progress + "/" + seekBar.getMax());
+                //Toast.makeText(getApplicationContext(), "Stopped tracking seekbar", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
 
     private void initializeVariables() {
         seekBar = (SeekBar) findViewById(R.id.seekBar1);
+        seekBar.setProgressDrawable(getResources().getDrawable(R.drawable.progress_bar));
         textView = (TextView) findViewById(R.id.textView1);
         alphaView = (TextView) findViewById(R.id.alpha);
     }
@@ -200,17 +205,6 @@ class AccelFieldSensorEventListener implements SensorEventListener {
             raw.addPoint(se.values);
         }
     }
-
-    protected float[] lowPassFilter(float[] in, float[] out, float α){
-        //Initialize output
-        if (output == null)
-            return input;
-
-        for(int i=0; i<in.length; i++)
-            out[i] = out[i] + α * (in[i]-out[i]);
-
-        return output;
-    }
 }
 
 
@@ -236,7 +230,7 @@ class Filter{
         alpha = a;
     }
 
-        }
+}
 
 class RotationFieldSensorEventListener implements SensorEventListener {
     TextView outputX;
