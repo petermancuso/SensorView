@@ -93,7 +93,7 @@
             <SeekBar
                 android:id="@+id/seekBar1"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="26dp"
@@ -103,8 +103,7 @@
                 android:layout_columnSpan="4"
                 android:textColor="#ffffff"
                 android:thumb="@drawable/seek_scrub_web"
-                android:progressDrawable="@drawable/thumb_image"
-                />
+                android:progressDrawable="@drawable/progress_bar" />
 
 
             <TextView
@@ -442,7 +441,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alpha"
+                android:text="Attenuation: 0.00000"
                 android:id="@+id/alphaLabel"
                 android:layout_marginLeft="29dp"
                 android:layout_marginTop="14dp"
@@ -455,7 +454,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alpha"
+                android:text="Attenuation: 0.00000"
                 android:id="@+id/alpha"
                 android:layout_marginLeft="29dp"
                 android:layout_marginTop="14dp"
