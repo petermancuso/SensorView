@@ -3,9 +3,9 @@
     <item>
         <shape>
             <size
-                android:height="40dp"
-                android:width="40dp" />
-            <solid android:color="@android:color/transparent" />
+                android:height="16dp"
+                android:width="20dp" />
+            <solid android:color="#00000000" />
         </shape>
     </item>
     <item android:drawable="@drawable/seek_scrub_web"/>
