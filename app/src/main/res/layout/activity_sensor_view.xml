@@ -94,10 +94,12 @@
 
             <SeekBar
                 android:id="@+id/seekBar1"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:layout_marginRight="3dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:paddingLeft="20dp"
                 android:maxHeight="5dp"
                 android:max="1000"
                 android:layout_row="4"
@@ -107,7 +109,8 @@
                 android:splitTrack="false"
                 android:thumb="@drawable/thumb_image"
                 android:progressDrawable="@drawable/progress_bar"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                />
 
 
             <TextView
